@@ -7,7 +7,9 @@ async function getData(URL) {
   try {
     const response = await fetch(URL);
     const data = await response.json();
-    document.getElementById("api-response").textContent = data.results;
+    data.results.forEach((name) => {
+      console.log(name);
+    });
   } catch (error) {
     console.log(error);
   }
