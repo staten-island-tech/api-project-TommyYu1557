@@ -98,6 +98,18 @@ button:focus-visible {
 }
 
 h2 {
-  margin-left: 10rem;
+  display: flex;
+  justify-content:space-around;
+  padding: 0.5rem;
+  color: gold;
+  background-color: black;
+  width: 65vw;
+}
+
+h3 {
+  padding: 0.2rem;
+  color: purple;
+  width: 20vw;
+  background-color: wheat;
 }
 
