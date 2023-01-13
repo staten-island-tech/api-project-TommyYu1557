@@ -14,7 +14,7 @@ async function getData(URL) {
       console.log(classes.name);
       data.results.forEach((classes) => {
         document.body.insertAdjacentHTML(
-          "beforebegin",
+          "beforeend",
           `<h2>Class: ${classes.name}</h2>`
         );
       });
@@ -34,7 +34,7 @@ async function getData2(URL2) {
       console.log(spells.desc);
       data.results.forEach((spells) => {
         document.body.insertAdjacentHTML(
-          "beforebegin",
+          "beforeend",
           `<h3>Spell: ${spells.name}</h3>`
         );
       });
@@ -51,11 +51,10 @@ async function getData3(URL3) {
     const data = await response.json();
     data.results.forEach((alignment) => {
       console.log(alignment.name);
-      console.log(alignment.desc);
       data.results.forEach((alignment) => {
         document.body.insertAdjacentHTML(
-          "beforebegin",
-          `<h3>Alignment: ${alignment.name}</h3>`
+          "beforeend",
+          `<h4>Alignment: ${alignment.name}</h4>`
         );
       });
       idk;
@@ -65,8 +64,24 @@ async function getData3(URL3) {
   }
 }
 
+function makecard() {
+  seals.forEach((seal) => {
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="sealcard"> 
+    <h2 class="sealcardname"> ${seal.names} </h2>
+     <p class ="sealcardtext"> Species: ${seal.species}</p>
+     <p class ="sealcardtext"> Age: ${seal.age} </p>
+     <p class ="sealcardtext"> Weight: ${seal.weight}lbs </p>
+     <p class ="sealcardtext"> Gender: ${seal.gender} </p>
+     <p class ="sealcardtext"> Angry? ${seal.hostile} </p>
+     <p class ="sealcardtext"> Stock: ${seal.stock} </p>
+     <h3 class ="sealcardtext"> $${seal.value}</h3>
+    </div>`
+    );
+  });
+}
+
 getData(URL);
 getData2(URL2);
 getData3(URL3);
-
-console.log(URL);
