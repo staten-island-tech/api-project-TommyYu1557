@@ -31,7 +31,6 @@ async function getData2(URL2) {
     const data = await response.json();
     data.results.forEach((spells) => {
       console.log(spells.name);
-      console.log(spells.desc);
       data.results.forEach((spells) => {
         document.body.insertAdjacentHTML(
           "beforeend",
