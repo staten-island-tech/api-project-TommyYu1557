@@ -1,12 +1,24 @@
 import "./style.css";
 
-const URL = "https://www.dnd5eapi.co/api/classes";
+const DOMselectors = {
+  input: document.getElementById("input"),
+  descbox: document.getElementById("descriptionbox"),
+  form: document.getElementById("info"),
+};
+
+let spellname = "fireball";
+
+//const URL = "https://www.dnd5eapi.co/api/classes";
+
+const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}/`;
+
 const URL2 = "https://www.dnd5eapi.co/api/spells";
-const URL3 = "https://www.dnd5eapi.co/api/alignments";
+
+//const URL3 = "https://www.dnd5eapi.co/api/alignments";
 
 // const URL = "https://api.quotable.io/random";
 
-async function getData(URL) {
+/* async function getData(URL) {
   try {
     const response = await fetch(URL);
     const data = await response.json();
@@ -23,7 +35,7 @@ async function getData(URL) {
   } catch (error) {
     console.log(error);
   }
-}
+} */
 
 async function getData2(URL2) {
   try {
@@ -44,7 +56,28 @@ async function getData2(URL2) {
   }
 }
 
-async function getData3(URL3) {
+async function getDescData(specificURL) {
+  try {
+    const response = await fetch(specificURL);
+    const data = await response.json();
+    data.results.forEach((desc) => {
+      console.log(desc.desc);
+      data.results.forEach((specificURL) => {
+        document.descbox.insertAdjacentHTML(
+          "beforeend",
+          `<h2>Spell: ${desc.desc}</h2>`
+        );
+      });
+      idk;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getDescData();
+
+/* async function getData3(URL3) {
   try {
     const response = await fetch(URL3);
     const data = await response.json();
@@ -61,26 +94,17 @@ async function getData3(URL3) {
   } catch (error) {
     console.log(error);
   }
+} */
+
+function makedesc() {
+  const input = DOMselectors.input.value;
+  DOMselectors.descbox.insertAdjacentHTML("beforeend", `<p>${input}</p>`);
 }
 
-function makecard() {
-  seals.forEach((seal) => {
-    document.body.insertAdjacentHTML(
-      "afterbegin",
-      `<div class="sealcard"> 
-    <h2 class="sealcardname"> ${seal.names} </h2>
-     <p class ="sealcardtext"> Species: ${seal.species}</p>
-     <p class ="sealcardtext"> Age: ${seal.age} </p>
-     <p class ="sealcardtext"> Weight: ${seal.weight}lbs </p>
-     <p class ="sealcardtext"> Gender: ${seal.gender} </p>
-     <p class ="sealcardtext"> Angry? ${seal.hostile} </p>
-     <p class ="sealcardtext"> Stock: ${seal.stock} </p>
-     <h3 class ="sealcardtext"> $${seal.value}</h3>
-    </div>`
-    );
-  });
-}
-
-getData(URL);
 getData2(URL2);
-getData3(URL3);
+
+DOMselectors.form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  createcard();
+  clearinputs();
+});
