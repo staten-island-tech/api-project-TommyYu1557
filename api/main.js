@@ -10,7 +10,9 @@ let spellname = "fireball";
 
 //const URL = "https://www.dnd5eapi.co/api/classes";
 
-const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}/`;
+// const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}`;
+const specificURL = "https://www.dnd5eapi.co/api/spells/fireball";
+console.log(specificURL);
 
 const URL2 = "https://www.dnd5eapi.co/api/spells";
 
@@ -56,16 +58,28 @@ async function getData2(URL2) {
   }
 }
 
-async function getDescData(specificURL) {
+async function descData1(specificURL) {
   try {
     const response = await fetch(specificURL);
     const data = await response.json();
-    data.results.forEach((desc) => {
-      console.log(desc.desc);
-      data.results.forEach((specificURL) => {
-        document.descbox.insertAdjacentHTML(
+    data.desc.forEach((bruh) => {
+      console.log(bruh);
+      data.desc.forEach((text) => {
+        DOMselectors.descbox.insertAdjacentHTML(
           "beforeend",
-          `<h2>Spell: ${desc.desc}</h2>`
+          `<h2>Description: ${text}</h2>`
+        );
+      });
+      data.classes.forEach((text) => {
+        DOMselectors.descbox.insertAdjacentHTML(
+          "beforeend",
+          `<h2>Available Classes: ${text.name}</h2>`
+        );
+      });
+      data.subclasses.forEach((text) => {
+        DOMselectors.descbox.insertAdjacentHTML(
+          "beforeend",
+          `<h2>Available Subclasses: ${text.name}</h2>`
         );
       });
       idk;
@@ -75,7 +89,7 @@ async function getDescData(specificURL) {
   }
 }
 
-getDescData();
+descData1(specificURL);
 
 /* async function getData3(URL3) {
   try {
