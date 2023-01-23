@@ -74,10 +74,12 @@ async function descData1(specificURL) {
         "beforeend",
         `<h2>Materials: ${data.material}</h2>`
       );
-      DOMselectors.descbox.insertAdjacentHTML(
-        "beforeend",
-        `<h2>Damage Levels: ${data.damage.damage_at_slot_level}</h2>`
-      );
+      data.damage.damage_at_slot_level.forEach((text1) => {
+        DOMselectors.descbox.insertAdjacentHTML(
+          "beforeend",
+          `<h2>Damage Levels: ${text1}</h2>`
+        );
+      });
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
         `<h2>Higher Level: ${data.higher_level}</h2>`
