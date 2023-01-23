@@ -6,7 +6,7 @@ const DOMselectors = {
   form: document.getElementById("info"),
 };
 
-let spellname = "fireball";
+// let spellname = "fireball";
 
 const specificURL = "https://www.dnd5eapi.co/api/spells/fireball";
 console.log(specificURL);
