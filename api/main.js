@@ -6,9 +6,9 @@ const DOMselectors = {
   form: document.getElementById("info"),
 };
 
-// let spellname = "fireball";
+let spellname = DOMselectors.input.value;
 
-const specificURL = "https://www.dnd5eapi.co/api/spells/fireball";
+const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}`;
 console.log(specificURL);
 
 const URL2 = "https://www.dnd5eapi.co/api/spells";
@@ -74,12 +74,6 @@ async function descData1(specificURL) {
         "beforeend",
         `<h2>Materials: ${data.material}</h2>`
       );
-      data.damage.damage_at_slot_level.forEach((text1) => {
-        DOMselectors.descbox.insertAdjacentHTML(
-          "beforeend",
-          `<h2>Damage Levels: ${text1}</h2>`
-        );
-      });
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
         `<h2>Higher Level: ${data.higher_level}</h2>`
@@ -111,15 +105,8 @@ async function descData1(specificURL) {
 
 descData1(specificURL);
 
-function makedesc() {
-  const input = DOMselectors.input.value;
-  DOMselectors.descbox.insertAdjacentHTML("beforeend", `<p>${input}</p>`);
-}
-
 getData2(URL2);
 
 DOMselectors.form.addEventListener("submit", function (e) {
   e.preventDefault();
-  createcard();
-  clearinputs();
 });
