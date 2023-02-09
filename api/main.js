@@ -4,32 +4,23 @@ const DOMselectors = {
   input: document.getElementById("input"),
   descbox: document.getElementById("descriptionbox"),
   form: document.getElementById("info"),
+  button: document.getElementById("funnybutton"),
+  h2: document.getElementById("description"),
+  desclines: document.getElementById("desclines"),
 };
-
-let spellname = DOMselectors.input.value;
-
-const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}`;
-console.log(specificURL);
 
 const URL2 = "https://www.dnd5eapi.co/api/spells";
 
-async function getData2(URL2) {
-  try {
-    const response = await fetch(URL2);
-    const data = await response.json();
-    data.results.forEach((spells) => {
-      console.log(spells.name);
-      data.results.forEach((spells) => {
-        document.body.insertAdjacentHTML(
-          "beforeend",
-          `<h3>Spell: ${spells.name}</h3>`
-        );
-      });
-      idk;
-    });
-  } catch (error) {
-    console.log(error);
-  }
+DOMselectors.button.addEventListener("click", function (bruh) {
+  poof();
+  bruh.preventDefault();
+  let spellname = DOMselectors.input.value;
+  const specificURL = `https://www.dnd5eapi.co/api/spells/${spellname}`;
+  descData1(specificURL);
+});
+
+function poof() {
+  DOMselectors.descbox.innerHTML = "";
 }
 
 async function descData1(specificURL) {
@@ -40,70 +31,87 @@ async function descData1(specificURL) {
       console.log(bruh);
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Name: ${data.name}</h2>`
+        `<p = id = "desclines">Name: ${data.name}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Level: ${data.level}</h2>`
+        `<p = id = "desclines">Level: ${data.level}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Cast Time: ${data.casting_time}</h2>`
+        `<p = id = "desclines">Cast Time: ${data.casting_time}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Duration: ${data.duration}</h2>`
+        `<p = id = "desclines">Duration: ${data.duration}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Range: ${data.range}</h2>`
+        `<p = id = "desclines">Range: ${data.range}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Components: ${data.components}</h2>`
+        `<p = id = "desclines">Components: ${data.components}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Ritual?: ${data.ritual}</h2>`
+        `<p = id = "desclines">Ritual?: ${data.ritual}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>DC Type: ${data.dc.dc_type.name}</h2>`
+        `<p = id = "desclines">DC Type: ${data.dc.dc_type.name}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Materials: ${data.material}</h2>`
+        `<p = id = "desclines">Materials: ${data.material}</p>`
       );
       DOMselectors.descbox.insertAdjacentHTML(
         "beforeend",
-        `<h2>Higher Level: ${data.higher_level}</h2>`
+        `<p = id = "desclines">Higher Level: ${data.higher_level}</p>`
       );
       data.desc.forEach((text) => {
         DOMselectors.descbox.insertAdjacentHTML(
           "beforeend",
-          `<h2>Description: ${text}</h2>`
+          `<p = id = "desclines">Description: ${text}</p>`
         );
       });
       data.classes.forEach((text) => {
         DOMselectors.descbox.insertAdjacentHTML(
           "beforeend",
-          `<h2>Available Classes: ${text.name}</h2>`
+          `<p id = "desclines">Available Classes: ${text.name}</p>`
         );
       });
       data.subclasses.forEach((text) => {
         DOMselectors.descbox.insertAdjacentHTML(
           "beforeend",
-          `<h2>Available Subclasses: ${text.name}</h2>`
+          `<p id = "desclines">Available Subclasses: ${text.name}</p>`
         );
       });
-      idk;
+      stopdouble;
     });
   } catch (error) {
     console.log(error);
   }
 }
 
-descData1(specificURL);
+async function getData2(URL2) {
+  try {
+    const response = await fetch(URL2);
+    const data = await response.json();
+    data.results.forEach((spells) => {
+      console.log(spells.name);
+      data.results.forEach((spells) => {
+        document.body.insertAdjacentHTML(
+          "beforeend",
+          `<p id = "spelltips">Spell: ${spells.name}</p>`
+        );
+      });
+      stopdouble;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 getData2(URL2);
 
